@@ -1,9 +1,14 @@
-﻿namespace SimpleEmailApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SimpleEmailApp.Models
 {
     public class DataEmail
     {
-        public string To { get; set; } = string.Empty;
-        public string Subject { get; set; } = string.Empty;
-        public string Body { get; set; } = string.Empty;
+        [Key]
+        public int IdEmail { get; set; }
+        [Required]
+        public string To { get; set; } 
+        public string Subject { get; set; } 
+        public string Body { get; set; } 
     } 
 }

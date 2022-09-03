@@ -1,8 +1,11 @@
 
 global using SimpleEmailApp.Services;
 global using SimpleEmailApp.Models;
-using Org.BouncyCastle.Crypto.Tls;
 
+
+using Org.BouncyCastle.Crypto.Tls;
+using SimpleEmailApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection");
+builder.Services.AddDbContext<AppDbContext>(options 
+    => options.UseNpgsql(connectionString));
+
+
 builder.Services.AddScoped<IEmailService, EmailService>();
 
 

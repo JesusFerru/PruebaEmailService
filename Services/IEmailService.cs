@@ -1,10 +1,12 @@
-﻿//using SimpleEmailApp.Models;
+﻿using System;
 
 namespace SimpleEmailApp.Services
 {
-    public class IEmailService
+    public interface IEmailService
     {
-        void Enviar(DataEmail request) { }
-
+        Task<List<DataEmail>> GetEmails();                 //Get
+        Task<DataEmail> SendEmail(DataEmail request);      //Post
+        Task<DataEmail> UpdateEmailContent(int id, DataEmail body);       //Put
+        Task<DataEmail> DeleteEmail(int id);               //Delete
     }
 }
